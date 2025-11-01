@@ -25,6 +25,10 @@
                 <button id="auto-use-toggle">자동사용: OFF</button>
             </div>
         </div>
+        <div id="settings-container">
+            <h2>설정</h2>
+            <button id="settings-button">설정 열기</button>
+        </div>
         <div id="achievement-container">
             <h2>업적</h2>
             <button id="achievement-button">업적 보기</button>
@@ -92,8 +96,8 @@
         </div>
     </div>
     <script src="script.js"></script>
-    <audio id="background-music" src="bgm.mp3" loop autoplay controls></audio>
-    <audio id="start-sound" src="hello1.mp3" autoplay controls></audio>
+    <audio id="background-music" src="bgm.mp3" loop style="display: none;"></audio>
+    <audio id="start-sound" src="hello1.mp3" style="display: none;"></audio>
     <audio id="success-sound" src="강화성공.mp3" preload="auto"></audio>
     <audio id="failure-sound" src="강화실패.mp3" preload="auto"></audio>
     <audio id="sell-sound" src="판매.mp3" preload="auto"></audio>
@@ -120,6 +124,28 @@
                 <button id="close-achievement">&times;</button>
             </div>
             <div id="achievements-list"></div>
+        </div>
+    </div>
+    
+    <!-- 설정 모달 -->
+    <div id="settings-modal" style="display: none;">
+        <div id="settings-content">
+            <div id="settings-header">
+                <h2>설정</h2>
+                <button id="close-settings">&times;</button>
+            </div>
+            <div id="settings-list">
+                <div class="settings-item">
+                    <h3>배경음악 볼륨</h3>
+                    <p><span id="bgm-volume-display">30</span>%</p>
+                    <input type="range" id="bgm-volume" min="0" max="100" value="30">
+                </div>
+                <div class="settings-item">
+                    <h3>효과음 볼륨</h3>
+                    <p><span id="sfx-volume-display">50</span>%</p>
+                    <input type="range" id="sfx-volume" min="0" max="100" value="50">
+                </div>
+            </div>
         </div>
     </div>
 </body>

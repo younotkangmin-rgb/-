@@ -53,6 +53,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const achievementButton = document.getElementById('achievement-button'); // New
     const achievementModal = document.getElementById('achievement-modal'); // New
     const closeAchievementButton = document.getElementById('close-achievement'); // New
+    const bgmVolumeSlider = document.getElementById('bgm-volume'); // New
+    const sfxVolumeSlider = document.getElementById('sfx-volume'); // New
+    const bgmVolumeDisplay = document.getElementById('bgm-volume-display'); // New
+    const sfxVolumeDisplay = document.getElementById('sfx-volume-display'); // New
+    const settingsButton = document.getElementById('settings-button'); // New
+    const settingsModal = document.getElementById('settings-modal'); // New
+    const closeSettingsButton = document.getElementById('close-settings'); // New
 
 
     
@@ -1035,6 +1042,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Play success sound
             if (successSound) {
+                successSound.volume = sfxVolume;
                 successSound.currentTime = 0;
                 successSound.play().catch(error => {
                     console.log('Success sound play failed:', error);
@@ -1073,6 +1081,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Play failure sound
             if (failureSound) {
+                failureSound.volume = sfxVolume;
                 failureSound.currentTime = 0;
                 failureSound.play().catch(error => {
                     console.log('Failure sound play failed:', error);
@@ -1286,6 +1295,14 @@ document.addEventListener('DOMContentLoaded', () => {
         achievementModal.style.display = 'none';
     });
     
+    // 설정 이벤트
+    settingsButton.addEventListener('click', () => {
+        settingsModal.style.display = 'flex';
+    });
+    closeSettingsButton.addEventListener('click', () => {
+        settingsModal.style.display = 'none';
+    });
+    
     // 모달 외부 클릭 시 닫기
     swordCollectionModal.addEventListener('click', (e) => {
         if (e.target === swordCollectionModal) {
@@ -1297,6 +1314,37 @@ document.addEventListener('DOMContentLoaded', () => {
             achievementModal.style.display = 'none';
         }
     });
+    settingsModal.addEventListener('click', (e) => {
+        if (e.target === settingsModal) {
+            settingsModal.style.display = 'none';
+        }
+    });
+
+    // Volume control
+    let bgmVolume = 0.3;
+    let sfxVolume = 0.5;
+    
+    function updateAllAudioVolumes() {
+        if (backgroundMusic) backgroundMusic.volume = bgmVolume;
+        if (startSound) startSound.volume = sfxVolume;
+        if (successSound) successSound.volume = sfxVolume;
+        if (failureSound) failureSound.volume = sfxVolume;
+        if (sellSound) sellSound.volume = sfxVolume;
+        if (buySound) buySound.volume = sfxVolume;
+        if (achievementSound) achievementSound.volume = sfxVolume;
+    }
+    
+    bgmVolumeSlider.addEventListener('input', (e) => {
+        bgmVolume = e.target.value / 100;
+        bgmVolumeDisplay.textContent = e.target.value;
+        if (backgroundMusic) backgroundMusic.volume = bgmVolume;
+    });
+    
+    sfxVolumeSlider.addEventListener('input', (e) => {
+        sfxVolume = e.target.value / 100;
+        sfxVolumeDisplay.textContent = e.target.value;
+        updateAllAudioVolumes();
+    });
 
     // Background music handling
     const backgroundMusic = document.getElementById('background-music');
@@ -1306,10 +1354,11 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log('Start button clicked');
             startOverlay.style.display = 'none';
             if (startSound) {
+                startSound.volume = sfxVolume;
                 startSound.play().catch(error => console.log('Start sound failed:', error));
             }
             if (backgroundMusic) {
-                backgroundMusic.volume = 0.3;
+                backgroundMusic.volume = bgmVolume;
                 backgroundMusic.play().catch(error => console.log('Music play failed:', error));
             }
         });
