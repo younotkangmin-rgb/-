@@ -104,7 +104,7 @@ body {
 }
 
 #inventory-container:hover {
-    transform: translateY(-5px); /* Lift slightly on hover */
+    transform: scale(0.8) translateY(-5px); /* Maintain scale while lifting */
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.7); /* Enhance shadow on hover */
 }
 
@@ -121,7 +121,7 @@ body {
 }
 
 #achievement-container:hover {
-    transform: translateY(-5px);
+    transform: scale(0.8) translateY(-5px);
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.7);
 }
 
@@ -165,12 +165,12 @@ body {
 }
 
 #shop-container:hover {
-    transform: translateY(-5px); /* Lift slightly on hover */
+    transform: scale(0.8) translateY(-5px); /* Maintain scale while lifting */
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.7); /* Enhance shadow on hover */
 }
 
 #game-container:hover {
-    transform: translateY(-5px); /* Lift slightly on hover */
+    transform: scale(0.8) translateY(-5px); /* Maintain scale while lifting */
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.7); /* Enhance shadow on hover */
 }
 
