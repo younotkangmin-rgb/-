@@ -87,7 +87,7 @@ body {
 
 #main-layout {
     display: flex;
-    flex-direction: column; /* Change to column layout */
+    flex-direction: row;
     gap: 30px; /* Space between game and shop containers */
     align-items: flex-start; /* Align items to the top */
 }
@@ -121,17 +121,7 @@ body {
     animation: float 3s ease-in-out infinite;
 }
 
-#settings-container {
-    background-color: #34495e;
-    padding: 30px;
-    border-radius: 15px;
-    display: inline-block;
-    border: 2px solid #2c3e50;
-    text-align: center;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
-    transition: all 0.3s ease;
-    animation: float 3s ease-in-out infinite;
-}
+
 
 #achievement-container:hover {
     transform: scale(0.8) translateY(-5px);
@@ -430,11 +420,6 @@ input[type="range"]::-moz-range-thumb {
     border: none;
 }
 
-#settings-container:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.7);
-}
-
 #settings-modal {
     position: fixed;
     top: 0;
@@ -511,6 +496,27 @@ input[type="range"]::-moz-range-thumb {
 
 #settings-button:hover {
     background-color: #2980b9;
+}
+
+#achievement-button, #settings-button {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+#achievement-button {
+    background-color: #f39c12;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+#achievement-button:hover {
+    background-color: #e67e22;
 }
 
 #strengthen-button {
