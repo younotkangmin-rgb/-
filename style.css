@@ -1,0 +1,828 @@
+body {
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    font-family: 'Malgun Gothic', sans-serif;
+    text-align: center;
+    /* New styles for centering */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+#start-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+#start-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+#start-game-button {
+    background-color: #e67e22;
+    color: white;
+    border: none;
+    padding: 20px 40px;
+    font-size: 1.5em;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: background-color 0.3s;
+}
+
+#start-game-button:hover {
+    background-color: #d35400;
+}
+
+#cheat-code-container {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+#cheat-code-input {
+    background-color: #34495e;
+    color: #ecf0f1;
+    border: 2px solid #2c3e50;
+    padding: 10px 15px;
+    font-size: 1em;
+    border-radius: 5px;
+    width: 150px;
+    text-align: center;
+}
+
+#cheat-code-input:focus {
+    outline: none;
+    border-color: #3498db;
+}
+
+#cheat-code-submit {
+    background-color: #27ae60;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+#cheat-code-submit:hover {
+    background-color: #229954;
+}
+
+#main-layout {
+    display: flex;
+    gap: 30px; /* Space between game and shop containers */
+    align-items: flex-start; /* Align items to the top */
+}
+
+#inventory-container {
+    background-color: #34495e; /* Same as game-container */
+    padding: 30px; /* Same as game-container */
+    border-radius: 15px; /* Same as game-container */
+    display: inline-block;
+    border: 2px solid #2c3e50; /* Same as game-container */
+    text-align: center;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5); /* Same as game-container */
+    transition: all 0.3s ease; /* Same as game-container */
+    animation: float 3s ease-in-out infinite; /* Same as game-container */
+}
+
+#inventory-container:hover {
+    transform: translateY(-5px); /* Lift slightly on hover */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.7); /* Enhance shadow on hover */
+}
+
+#achievement-container {
+    background-color: #34495e;
+    padding: 30px;
+    border-radius: 15px;
+    display: inline-block;
+    border: 2px solid #2c3e50;
+    text-align: center;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
+    animation: float 3s ease-in-out infinite;
+}
+
+#achievement-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.7);
+}
+
+#game-container {
+    background-color: #34495e;
+    padding: 30px; /* Increased */
+    border-radius: 15px; /* Increased */
+    display: inline-block;
+    border: 2px solid #2c3e50;
+    text-align: center; /* Center contents within the game container */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5); /* Add initial shadow */
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
+    animation: float 3s ease-in-out infinite; /* Apply continuous floating animation */
+}
+
+.shake-target {
+    /* Ensure it fills the parent and doesn't interfere with layout */
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0; /* Reset padding as game-container already has it */
+}
+
+.shake-target.success-animation {
+    animation: success-shake 0.4s ease-in-out;
+}
+
+#shop-container {
+    background-color: #34495e; /* Same as game-container */
+    padding: 30px; /* Same as game-container */
+    border-radius: 15px; /* Same as game-container */
+    display: inline-block;
+    border: 2px solid #2c3e50; /* Same as game-container */
+    text-align: center;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5); /* Same as game-container */
+    transition: all 0.3s ease; /* Same as game-container */
+    animation: float 3s ease-in-out infinite; /* Same as game-container */
+}
+
+#shop-container:hover {
+    transform: translateY(-5px); /* Lift slightly on hover */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.7); /* Enhance shadow on hover */
+}
+
+#game-container:hover {
+    transform: translateY(-5px); /* Lift slightly on hover */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.7); /* Enhance shadow on hover */
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+#sword-visual {
+    margin-bottom: 20px;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#aura-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#aura-outer, #aura-middle, #aura-inner {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0;
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+#aura-outer {
+    width: 120px;
+    height: 120px;
+    background: radial-gradient(circle, transparent 60%, rgba(255, 255, 255, 0.1) 100%);
+    animation: aura-pulse-outer 3s ease-in-out infinite;
+}
+
+#aura-middle {
+    width: 80px;
+    height: 80px;
+    background: radial-gradient(circle, transparent 50%, rgba(255, 255, 255, 0.2) 100%);
+    animation: aura-pulse-middle 2s ease-in-out infinite;
+}
+
+#aura-inner {
+    width: 50px;
+    height: 50px;
+    background: radial-gradient(circle, transparent 40%, rgba(255, 255, 255, 0.3) 100%);
+    animation: aura-pulse-inner 1.5s ease-in-out infinite;
+}
+
+@keyframes aura-pulse-outer {
+    0%, 100% { transform: scale(0.8); opacity: 0.1; }
+    50% { transform: scale(1.2); opacity: 0.3; }
+}
+
+@keyframes aura-pulse-middle {
+    0%, 100% { transform: scale(0.9); opacity: 0.2; }
+    50% { transform: scale(1.1); opacity: 0.5; }
+}
+
+@keyframes aura-pulse-inner {
+    0%, 100% { transform: scale(0.95); opacity: 0.3; }
+    50% { transform: scale(1.05); opacity: 0.7; }
+}
+
+@keyframes sword-break {
+    0% { transform: scale(1) rotate(0deg); }
+    50% { transform: scale(1.1) rotate(5deg); }
+    100% { transform: scale(0.8) rotate(-5deg); opacity: 0.3; }
+}
+
+#sword-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+#sword-blade {
+    width: 8px;
+    height: 60px;
+    background: linear-gradient(to bottom, #ecf0f1, #bdc3c7);
+    border-radius: 4px 4px 0 0;
+    box-shadow: 0 0 5px rgba(236, 240, 241, 0.3);
+    transition: all 0.3s ease;
+}
+
+#sword-guard {
+    width: 30px;
+    height: 4px;
+    background: #95a5a6;
+    border-radius: 2px;
+    margin-top: -2px;
+    transition: all 0.3s ease;
+}
+
+#sword-handle {
+    width: 6px;
+    height: 20px;
+    background: #8b4513;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+#sword-pommel {
+    width: 10px;
+    height: 6px;
+    background: #95a5a6;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+#sword-info p {
+    font-size: 1.4em; /* Increased */
+}
+
+.inventory-item {
+    background-color: #2c3e50; /* Darker background for item */
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #1a242f;
+}
+
+.inventory-item h3 {
+    margin-top: 0;
+    color: #ecf0f1;
+}
+
+.inventory-item p {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+}
+
+#auto-use-toggle {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    font-size: 0.9em;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
+
+#auto-use-toggle:hover {
+    background-color: #c0392b;
+}
+
+#auto-use-toggle.active {
+    background-color: #27ae60;
+}
+
+#auto-use-toggle.active:hover {
+    background-color: #229954;
+}
+
+.achievement-item {
+    background-color: #2c3e50;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #1a242f;
+}
+
+.achievement-item h3 {
+    margin-top: 0;
+    color: #f1c40f;
+}
+
+.achievement-item p {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+}
+
+.shop-item {
+    background-color: #2c3e50; /* Darker background for item */
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #1a242f;
+}
+
+.shop-item h3 {
+    margin-top: 0;
+    color: #ecf0f1;
+}
+
+.shop-item p {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+}
+
+.shop-item button {
+    background-color: #27ae60; /* Green for buy button */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.shop-item button:hover {
+    background-color: #229954;
+}
+
+.shop-item button:disabled {
+    background-color: #7f8c8d;
+    cursor: not-allowed;
+}
+
+#strengthen-button {
+    background-color: #e67e22;
+    color: white;
+    border: none;
+    padding: 20px 40px;
+    font-size: 1.3em;
+    cursor: pointer;
+    border-radius: 8px;
+    margin-top: 15px;
+    transition: background-color 0.3s;
+}
+
+#strengthen-button:hover {
+    background-color: #d35400;
+}
+
+#strengthen-button:disabled {
+    background-color: #7f8c8d;
+    cursor: not-allowed;
+}
+
+#particle-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+.sword-fragment {
+    position: absolute;
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    z-index: 10000;
+    border-radius: 1px;
+}
+
+.explosion-spark {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: radial-gradient(circle, #ff6b35, #f7931e);
+    border-radius: 50%;
+    transition: all 0.6s ease-out;
+    box-shadow: 0 0 6px #ff6b35;
+}
+
+#sword-collection-button {
+    background-color: #9b59b6;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+    transition: background-color 0.3s;
+}
+
+#sword-collection-button:hover {
+    background-color: #8e44ad;
+}
+
+#sword-collection-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 2000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#sword-collection-content {
+    background-color: #34495e;
+    border-radius: 15px;
+    padding: 30px;
+    width: 90%;
+    max-width: 1200px;
+    max-height: 85%;
+    overflow-y: auto;
+    border: 2px solid #2c3e50;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+#sword-collection-content::-webkit-scrollbar {
+    display: none;
+}
+
+#sword-collection-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#close-collection {
+    background: none;
+    border: none;
+    color: #ecf0f1;
+    font-size: 2em;
+    cursor: pointer;
+    padding: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    transition: background-color 0.3s;
+}
+
+#close-collection:hover {
+    background-color: #e74c3c;
+}
+
+#sword-collection-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 12px;
+}
+
+.sword-collection-item {
+    background-color: #2c3e50;
+    padding: 12px;
+    border-radius: 8px;
+    text-align: center;
+    border: 2px solid #1a242f;
+    transition: all 0.3s ease;
+    min-height: 140px;
+}
+
+.sword-collection-item:hover {
+    border-color: #3498db;
+    transform: translateY(-2px);
+}
+
+.sword-collection-item.unlocked {
+    border-color: #27ae60;
+}
+
+.sword-collection-item h4 {
+    margin: 0 0 8px 0;
+    color: #ecf0f1;
+    font-size: 1em;
+}
+
+.sword-collection-item.locked h4 {
+    color: #7f8c8d;
+}
+
+.sword-collection-item p {
+    margin: 3px 0;
+    font-size: 0.8em;
+}
+
+.sword-collection-item.locked p {
+    color: #7f8c8d;
+}
+
+.mini-sword-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 8px 0;
+    height: 50px;
+    justify-content: center;
+}
+
+.mini-sword-blade {
+    border-radius: 2px 2px 0 0;
+    transition: all 0.3s ease;
+}
+
+.mini-sword-guard {
+    background: #95a5a6;
+    border-radius: 1px;
+    margin-top: -1px;
+    transition: all 0.3s ease;
+}
+
+.mini-sword-handle {
+    background: #8b4513;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+.mini-sword-pommel {
+    background: #95a5a6;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.locked-sword {
+    background: #7f8c8d !important;
+    box-shadow: none !important;
+}
+
+
+#result-message {
+    margin-top: 25px; /* Increased */
+    font-size: 1.4em; /* Increased */
+    min-height: 30px; /* Increased */
+}
+
+#confirmation-buttons {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+#confirmation-buttons p {
+    font-size: 1.2em;
+    color: #f1c40f; /* Yellow for prompt */
+    margin-bottom: 5px;
+}
+
+#confirmation-buttons button {
+    background-color: #2ecc71; /* Green for Yes */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    width: 100px; /* Fixed width for consistency */
+}
+
+#confirmation-buttons button:hover {
+    background-color: #27ae60;
+}
+
+#confirmation-buttons #confirm-no {
+    background-color: #e74c3c; /* Red for No */
+}
+
+#confirmation-buttons #confirm-no:hover {
+    background-color: #c0392b;
+}
+
+#gold-display {
+    font-size: 2.2em; /* Increased font size */
+    margin-bottom: 20px; /* Adjusted margin for inside container */
+    color: #f1c40f; /* Yellow text color */
+    font-weight: bold;
+}
+
+#sell-button {
+    background-color: #3498db; /* Blue color for sell button */
+    color: white;
+    border: none;
+    padding: 20px 40px;
+    font-size: 1.3em;
+    cursor: pointer;
+    border-radius: 8px; /* Increased */
+    margin-top: 15px;
+    margin-left: 10px; /* Add some space between strengthen and sell buttons */
+    transition: background-color 0.3s;
+}
+
+#sell-button:hover {
+    background-color: #2980b9;
+}
+
+#sell-button:disabled {
+    background-color: #95a5a6;
+    cursor: not-allowed;
+}
+
+/* Particle Styles */
+#particle-container {
+    position: fixed; /* Use fixed to overlay the whole screen */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none; /* Clicks go through the container */
+    overflow: hidden;
+    z-index: 999; /* Ensure it's on top */
+}
+
+.particle {
+    position: absolute;
+    width: 10px;
+    height: 15px; /* Rectangular */
+    background-color: #2ecc71;
+    border-radius: 2px;
+    transition: all 1s ease-out;
+    /* Start at the center of the screen */
+    top: 50%;
+    left: 50%;
+    opacity: 1;
+}
+
+/* Failure Particle */
+.failure-particle {
+    position: absolute;
+    width: 8px;
+    height: 20px;
+    background-color: #e74c3c; /* Red */
+    transition: all 0.7s cubic-bezier(0.1, 0.7, 1.0, 0.1);
+    top: 50%;
+    left: 50%;
+    opacity: 1;
+}
+
+/* Success Animation */
+@keyframes success-simple-bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); } /* Subtle bounce up */
+}
+
+.shake-target.success-animation {
+    animation: success-simple-bounce 0.2s ease-out;
+}
+
+/* UI Shake Animation */
+@keyframes ui-success-shake {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    25% { transform: translateY(-3px) rotate(0.5deg); }
+    75% { transform: translateY(-3px) rotate(-0.5deg); }
+}
+
+.ui-success-animation {
+    animation: ui-success-shake 0.3s ease-out;
+}
+
+/* Whole Screen Shake Animation */
+@keyframes screen-shake {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    10% { transform: translate(-2px, -1px) rotate(-0.2deg); }
+    20% { transform: translate(2px, 1px) rotate(0.2deg); }
+    30% { transform: translate(-1px, 2px) rotate(-0.1deg); }
+    40% { transform: translate(1px, -2px) rotate(0.1deg); }
+    50% { transform: translate(-2px, 1px) rotate(-0.2deg); }
+    60% { transform: translate(2px, -1px) rotate(0.2deg); }
+    70% { transform: translate(-1px, -2px) rotate(-0.1deg); }
+    80% { transform: translate(1px, 2px) rotate(0.1deg); }
+    90% { transform: translate(-1px, -1px) rotate(-0.1deg); }
+}
+
+.screen-shake-animation {
+    animation: screen-shake 0.4s ease-out;
+}
+
+
+
+/* Failure Animation */
+@keyframes failure-shake {
+  10%, 90% { transform: translate3d(-1px, 0, 0); }
+  20%, 80% { transform: translate3d(2px, 0, 0); }
+  30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+  40%, 60% { transform: translate3d(4px, 0, 0); }
+}
+
+.failure-animation {
+    animation: failure-shake 0.8s cubic-bezier(.36,.07,.19,.97) both;
+}
+#achievement-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 2000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#achievement-content {
+    background-color: #34495e;
+    border-radius: 15px;
+    padding: 30px;
+    width: 90%;
+    max-width: 1200px;
+    max-height: 85%;
+    overflow-y: auto;
+    border: 2px solid #2c3e50;
+}
+
+#achievement-content::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+}
+
+#achievement-content {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+#achievement-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#close-achievement {
+    background: none;
+    border: none;
+    color: #ecf0f1;
+    font-size: 2em;
+    cursor: pointer;
+    padding: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    transition: background-color 0.3s;
+}
+
+#close-achievement:hover {
+    background-color: #e74c3c;
+}
+
+#achievement-button {
+    background-color: #f39c12;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+    transition: background-color 0.3s;
+}
+
+#achievement-button:hover {
+    background-color: #e67e22;
+}

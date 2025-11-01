@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>검 강화 게임</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="start-overlay">
+        <div id="start-content">
+            <button id="start-game-button">게임 시작</button>
+            <div id="cheat-code-container">
+                <input type="text" id="cheat-code-input" placeholder="코드 입력..." maxlength="10">
+                <button id="cheat-code-submit">확인</button>
+            </div>
+        </div>
+    </div>
+    <div id="main-layout">
+        <div id="inventory-container">
+            <h2>인벤토리</h2>
+            <div class="inventory-item">
+                <h3>강화 실패 방지권</h3>
+                <p>보유: <span id="prevention-ticket-count">0</span> 개</p>
+                <button id="auto-use-toggle">자동사용: OFF</button>
+            </div>
+        </div>
+        <div id="achievement-container">
+            <h2>업적</h2>
+            <button id="achievement-button">업적 보기</button>
+        </div>
+        <div id="game-container">
+            <div class="shake-target">
+                <div id="gold-display">
+                    소지금: <span id="current-gold">0</span> G
+                </div>
+                <div id="sword-visual">
+                    <div id="aura-container">
+                        <div id="aura-outer"></div>
+                        <div id="aura-middle"></div>
+                        <div id="aura-inner"></div>
+                        <div id="sword-container">
+                            <div id="sword-blade"></div>
+                            <div id="sword-guard"></div>
+                            <div id="sword-handle"></div>
+                            <div id="sword-pommel"></div>
+                        </div>
+                    </div>
+                </div>
+                <div id="sword-info">
+                    <p>현재 검: <span id="sword-name"></span></p>
+                    <p>레벨: <span id="sword-level">1</span> / 100</p>
+                    <p>강화 성공 확률: <span id="success-chance"></span>%</p>
+                    <p>무기 가치: <span id="sword-price"></span> G</p>
+                    <p>강화 비용: <span id="strengthen-cost"></span> G</p>
+                </div>
+                <button id="strengthen-button">강화하기</button>
+                <button id="sell-button">판매하기</button>
+                <button id="sword-collection-button">검 도감</button>
+                <p id="result-message"></p>
+                <div id="confirmation-buttons" style="display: none;">
+                    <p>강화 실패 방지권을 사용하시겠습니까?</p>
+                    <button id="confirm-yes">예</button>
+                    <button id="confirm-no">아니오</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="shop-container">
+            <h2>상점</h2>
+            <div class="shop-item">
+                <h3>강화 실패 방지권</h3>
+                <p>가격: <span id="prevention-ticket-price">100000</span> G</p>
+                <p>구매할 때마다 가격 50% 증가</p>
+                <p>가격 초기화: <span id="price-reset-timer">60</span>초</p>
+                <button id="buy-prevention-ticket">구매</button>
+            </div>
+            <div class="shop-item">
+                <h3>행운의 부적</h3>
+                <p>가격: 500000 G</p>
+                <p>다음 강화 성공률 +10%</p>
+                <p>보유: <span id="luck-charm-count">0</span>개</p>
+                <button id="buy-luck-charm">구매</button>
+            </div>
+            <div class="shop-item">
+                <h3>신비한 주사위</h3>
+                <p>가격: 1000000 G</p>
+                <p>랜덤 레벨로 점프! (1~현재+5)</p>
+                <p>위험하지만 재밌어요!</p>
+                <button id="buy-dice">구매</button>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+    <!-- 오디오 파일이 없으면 오류 방지를 위해 주석 처리 -->
+    <!-- <audio id="background-music" src="bgm.mp3" loop></audio>
+    <audio id="start-sound" src="hello1.mp3"></audio>
+    <audio id="success-sound" src="강화성공.mp3" preload="auto"></audio>
+    <audio id="failure-sound" src="강화실패.mp3" preload="auto"></audio>
+    <audio id="sell-sound" src="판매.mp3" preload="auto"></audio>
+    <audio id="buy-sound" src="구매.mp3" preload="auto"></audio>
+    <audio id="achievement-sound" src="강화성공1.mp3" preload="auto"></audio> -->
+    <div id="particle-container"></div>
+    
+    <!-- 검 도감 모달 -->
+    <div id="sword-collection-modal" style="display: none;">
+        <div id="sword-collection-content">
+            <div id="sword-collection-header">
+                <h2>검 도감</h2>
+                <button id="close-collection">&times;</button>
+            </div>
+            <div id="sword-collection-grid"></div>
+        </div>
+    </div>
+    
+    <!-- 업적 모달 -->
+    <div id="achievement-modal" style="display: none;">
+        <div id="achievement-content">
+            <div id="achievement-header">
+                <h2>업적</h2>
+                <button id="close-achievement">&times;</button>
+            </div>
+            <div id="achievements-list"></div>
+        </div>
+    </div>
+</body>
+</html>
