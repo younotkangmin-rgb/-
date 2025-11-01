@@ -87,6 +87,7 @@ body {
 
 #main-layout {
     display: flex;
+    flex-direction: column; /* Change to column layout */
     gap: 30px; /* Space between game and shop containers */
     align-items: flex-start; /* Align items to the top */
 }
