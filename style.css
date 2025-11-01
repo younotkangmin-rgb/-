@@ -520,6 +520,20 @@ input[type="range"]::-moz-range-thumb {
     background-color: #e67e22;
 }
 
+@media (max-width: 768px) {
+    #main-layout {
+        flex-direction: row !important;
+        overflow-x: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    #main-layout {
+        flex-direction: row !important;
+        overflow-x: auto;
+    }
+}
+
 #strengthen-button {
     background-color: #e67e22;
     color: white;
