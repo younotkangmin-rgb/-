@@ -86,8 +86,9 @@ body {
 }
 
 #main-layout {
-    display: flex;
-    flex-direction: row;
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
     gap: 30px; /* Space between game and shop containers */
     align-items: flex-start; /* Align items to the top */
 }
