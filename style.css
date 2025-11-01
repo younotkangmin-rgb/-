@@ -86,11 +86,11 @@ body {
 }
 
 #main-layout {
-    display: flex !important;
-    flex-direction: row !important;
-    flex-wrap: nowrap !important;
+    display: flex;
+    flex-direction: row;
     gap: 30px; /* Space between game and shop containers */
     align-items: flex-start; /* Align items to the top */
+    justify-content: center; /* Center items horizontally */
 }
 
 #inventory-container {
